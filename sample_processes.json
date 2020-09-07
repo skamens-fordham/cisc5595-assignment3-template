@@ -1,0 +1,13 @@
+{ "processes" : 
+	[{
+		"process_name": "process1",
+		"priority": 100,
+		"cpu_needed" : 5
+	},
+	{
+		"process_name": "process2",
+		"priority" : 0,
+		"cpu_needed" : 3
+	}
+]
+}
