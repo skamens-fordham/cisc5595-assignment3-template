@@ -7,7 +7,6 @@
 
 #include "process.h"
 
-namespace cisc5595 {
 class CpuSchedulerBase {
 
     public:
@@ -25,7 +24,5 @@ class CpuSchedulerBase {
         // If no processes remain to schedule, return -1
         virtual int nextProcess() = 0;
 };
-
-}
 
 #endif
