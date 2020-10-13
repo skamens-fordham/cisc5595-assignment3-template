@@ -25,4 +25,4 @@ class CpuSchedulerBase {
         virtual int nextProcess() = 0;
 };
 
-#endif
+#endif // CPU_SCHEDULER_BASE
