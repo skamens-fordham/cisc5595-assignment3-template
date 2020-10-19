@@ -71,15 +71,15 @@ See the comments in `cpu_scheduler_base.h` for details on the class's expected b
 
 ## First Come, First-Served Scheduler
 
-Create new files in your directory called `cpu_scheduler_fcfs.h` and `cpu_scheduler_fcfs.cpp` to contain your implementation of a First-Come, First-Served process scheduler. Add these to your repository using `git add`, and update your Makefile to build them.
+There will be a starter header file in your directory called `cpu_scheduler_fcfs.h` which will contain the declaration of your First-Come, First-Served scheduler class. Add a new file `cpu_scheduler_fcfs.cpp` to contain your implementation of this class. Add the new file to your repository using `git add`, and update your Makefile to build it.
 
-In these files, implement this scheduling algorithm.
+Based on the instructions in the header file, implement this scheduler class in these files.
 
 ## Priority round-robin scheduler
 
-Create new files in your directory called `cpu_scheduler_priority_rr.h` and `cpu_scheduler_priority_rr.cpp` for your implementation of a priority-based round robin scheduler. Add these to your repository using `git add`, and update your Makefile to build them.
+There will be a starter header file in your directory called `cpu_scheduler_priority_rr.h` which will contain the declaration of your Priority Round-Robin scheduler class. Add a new file `cpu_scheduler_priority_rr.cpp` to contain your implementation of this class. Add the new file to your repository using `git add`, and update your Makefile to build it.
 
-Implement this algorithm in these files.
+Based on the instructions in the header file, implement this scheduler class in these files.
 
 # run_processes
 
