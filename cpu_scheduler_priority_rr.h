@@ -8,7 +8,7 @@
 #include "process.h"
 #include "cpu_scheduler_base.h"
 
-class CpuSchedulerPriorityRoundRobin {
+class CpuSchedulerPriorityRoundRobin : public CpuSchedulerBase {
 
     public:
 
@@ -28,6 +28,8 @@ class CpuSchedulerPriorityRoundRobin {
         // Define a data structure that will hold the
         // process ID's that have been added to the scheduler
         // and will help to implement the scheduling algorithm
+	
 };
 
 #endif // CISC5595_CPU_SCHEDULER_PRIORITY_RR_H
+

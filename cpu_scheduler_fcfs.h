@@ -8,7 +8,7 @@
 #include "process.h"
 #include "cpu_scheduler_base.h"
 
-class CpuSchedulerFcfs {
+class CpuSchedulerFcfs : public CpuSchedulerBase {
 
     public:
 
