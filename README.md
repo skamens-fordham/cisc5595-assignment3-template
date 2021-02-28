@@ -103,5 +103,7 @@ Your program will:
 
 Follow the comments in `execute.cpp` or `execute.py` to implement and test this program. 
 
+# Submission
 
+When you have completed your assignment, update the `submit.txt` file found in your starter files and upload it to Blackboard.
 
