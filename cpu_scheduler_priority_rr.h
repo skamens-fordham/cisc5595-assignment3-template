@@ -1,23 +1,25 @@
-#ifndef CISC5595_CPU_SCHEDULER_PRIORITY_RR_H
-#define CISC5595_CPU_SCHEDULER_PRIORITY_RR_H
+#ifndef CISC5595_CPU_SCHEDULER_PRIORITY_H
+#define CISC5595_CPU_SCHEDULER_PRIORITY_H
 
-// cpu_scheduler_priority_rr.h
+// cpu_scheduler_fcfs.h
 //
-// Abstract base class of a CPU scheduler.
+// First-come first-served CPU scheduler.
 
-#include "process.h"
 #include "cpu_scheduler_base.h"
+#include "process.h"
 
-class CpuSchedulerPriorityRoundRobin : public CpuSchedulerBase {
+using namespace std;
+
+class CpuSchedulerPriorityRr : public CpuSchedulerBase {
 
     public:
 
         // Add a new process to the set of processes to be
         // scheduled.
         virtual bool addProcess(Process process);
-        
-        // Remove a process from the scheduler (generally
-        // because it's done).
+
+        // Remove a process from the set of processes to be 
+        // scheduled (generally because it's done)
         virtual bool removeProcess(Process process);
 
         // Get the process id of the next process to be scheduled
@@ -25,11 +27,11 @@ class CpuSchedulerPriorityRoundRobin : public CpuSchedulerBase {
         virtual int nextProcess();
 
     private:
-        // Define a data structure that will hold the
-        // process ID's that have been added to the scheduler
-        // and will help to implement the scheduling algorithm
-	
+        // TODO:
+        // Add a data structure here that will hold the processes
+        // that need to be scheduled. Note that since you need to schedule 
+        // in order of priority, you will need to store both the priority
+        // and the process ID of each process.
 };
 
-#endif // CISC5595_CPU_SCHEDULER_PRIORITY_RR_H
-
+#endif

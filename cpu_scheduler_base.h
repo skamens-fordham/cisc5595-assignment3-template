@@ -15,14 +15,14 @@ class CpuSchedulerBase {
         // scheduled.
         virtual bool addProcess(Process process) = 0;
 
-        
         // Remove a process from the scheduler (generally
         // because it's done).
         virtual bool removeProcess(Process process) = 0;
+
 
         // Get the process id of the next process to be scheduled
         // If no processes remain to schedule, return -1
         virtual int nextProcess() = 0;
 };
 
-#endif // CPU_SCHEDULER_BASE
+#endif

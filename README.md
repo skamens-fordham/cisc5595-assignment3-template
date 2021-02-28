@@ -1,27 +1,13 @@
 # CISC 5595 Assignment 3: Process Scheduling
 
-In this assignment, we will enhance our Process class so that we can simulate a "running" process. We will then implement a number of different CPU scheduling algorithms using this capability.
+In this assignment, we will enhance our Process class so that we can simulate a "running" process. We will then implement two different CPU scheduling algorithms using this capability, and update our test program to execute the algorithms.
+
+Throughout the templates, the places where you will need to add your own code are marked with "TODO". 
 
 # Process class
 
-We will start with our Process and ProcessTable classes from Assignment 2, and add to them for this assignment.
+We will start with the Process and ProcessTable classes from Assignment 2.
 
-## Copy files from assignment 2
-Copy the following files from your assignment 2 directory/repository into this directory:
-
-  * `process.h`
-  * `process.cpp`
-  * `process_table.h`
-  * `process_table.cpp`
-  * `process_test.cpp`
-
-## Add files to the git repository
-Add these files to the git repository using the following commands:
-
-``` 
-$ git add process.h process.cpp process_table.h process_table.cpp process_test.cpp
-$ git commit --message "Add Process and ProcessTable files to repo" 
-```
 ## Changes to the Process class
 
 We will need to make a number of changes to the Process class for this project, as follows:
@@ -30,64 +16,92 @@ We will need to make a number of changes to the Process class for this project, 
 
 Add the following new attributes to your Process class:
 
-* `priority` - an integer value representing the scheduling priority of the process, where 0 repesents the highest priority. Assume that the default "standard-user" priority is 100.
+* `priority` - an integer value representing the scheduling priority of the process, where 0 repesents the highest priority. 
 * `cpu_needed` - the number of cpu cycles the process needs to run over its entire lifetime
 * `cpu_used` - the number of cpu cycles that have actually executed for the process. This will be an internal attribute of the object.
 
-Update your `Process` class as follows:
-* Update your constructor so you can specify the new attributes at object creation time
-* Add appropriate set and get methods for these attributes
-* Update the to_json and from_json methods to take the new attributes into account
-* Update your print methods to display them
+### Add a `run()` method
 
-### Add `run` method
+The `run()` method will execute that process for a specific number of CPU cycles.
 
-Add a new method to your Process class called `run`. Its function signature should be as follows:
+### Update Process Input and Output
 
-`int run(int numCycles)`
+Handle additional attributes when retrieving Process objects and also when printing them out.
 
-The `run` method should behave as follows:
 
-* The `numCycles` parameter indicates how many CPU cycles the process is allowed to use
-* Calculate how many CPU cycles the process will actually use
-* Update the `cpu_used` member to indicate how many cycles have been used overall
-* Return the actual number of cycles used (which could be less than the value of the `numCycles` parameter)
-
-### Add tests
-Add new tests in `process_test.cpp` to verify the new code.
+Update your `Process` class as indicated by the TODO: entries in the `process.h/process.cpp` or `process.py` files.
 
 # CPU Scheduler Classes
 
 You will implement two different scheduling algorithms for this assignment, based on the instructions below.
 
-## Base Class
+Each of your algorithms will implement the following three functions:
+* `addProcess` will take a process object and store the process ID and other information in a data structure local to the scheduling object.
+* `removeProcess` will remove a process from the scheduler
+* `nextProcess` will determine the next process that should run and return its process ID
 
-The starter files contain a file `cpu_scheduler_base.h` which defines an [Abstract Base Class](https://www.tutorialspoint.com/cplusplus/cpp_interfaces.htm) for our schedulers. This base class requires that any class derived from it must implement the following two methods:
+You will implement a *First-Come, First-Served* and a *Priority Round Robin* scheduler.
+
+The scheduling classes are implemented slightly differently between C++ and Python, as noted below.
+
+## C++
+
+### Base Class
+
+For C++, the starter files include the file `cpu_scheduler_base.h`, which defines an [Abstract Base Class](https://www.tutorialspoint.com/cplusplus/cpp_interfaces.htm) for our schedulers. This base class requires that any class derived from it must implement the following methods:
 * `virtual bool addProcess(Process& process)`
 * `virtual bool removeProcess(Process& process)`
 * `virtual Process& nextProcess()`
 
-See the comments in `cpu_scheduler_base.h` for details on the class's expected behavior.
+### First Come, First-Served Scheduler
 
-## First Come, First-Served Scheduler
+There are starter files in your directory called `cpu_scheduler_fcfs.h` and `cpu_scheduler_fcfs.cpp`. These files will contain the declaration and implementation of your first-come, first-served scheduling class.
 
-There will be a starter header file in your directory called `cpu_scheduler_fcfs.h` which will contain the declaration of your First-Come, First-Served scheduler class. Add a new file `cpu_scheduler_fcfs.cpp` to contain your implementation of this class. Add the new file to your repository using `git add`, and update your Makefile to build it.
+Based on the instructions in these files, implement this scheduler class.
 
-Based on the instructions in the header file, implement this scheduler class in these files.
+### Priority round-robin scheduler
 
-## Priority round-robin scheduler
+There are starter files in your directory called `cpu_scheduler_priority_rr.h` and `cpu_scheduler_priority_rr.cpp`. These files will contain the declaration and implementation of your Priority Round Robin scheduling class.
 
-There will be a starter header file in your directory called `cpu_scheduler_priority_rr.h` which will contain the declaration of your Priority Round-Robin scheduler class. Add a new file `cpu_scheduler_priority_rr.cpp` to contain your implementation of this class. Add the new file to your repository using `git add`, and update your Makefile to build it.
+Based on the instructions in these files, implement this scheduler class.
 
-Based on the instructions in the header file, implement this scheduler class in these files.
+## Python
 
-# run_processes
+### First Come, First-Served Scheduler
 
-`run_processes` is the main program that you will use to exercise your scheduling algorithms. The program will take the desired scheduling algorithm as a command line argument along with a set of json files defining the processes that should be run.
+There is starter file in your directory called `cpu_scheduler_fcfs.py` which contains the skeleton of your First-Come, First-Served scheduler class. Based on the instructions in this file, implement this scheduler class.
 
-It will simulate running all of the processes from the input files.
+### Priority round-robin scheduler
 
-Follow the comments in `run_processes.cpp` to implement and test this program  
+There is a starter file in your directory called `cpu_scheduler_priority_rr.py` which contains the skeleton of your Priority Round-Robin scheduler class. Based on the instructions in this file, implement the class.
+
+# Input File
+
+The input file format for this assignment is slightly different than it was for assignment 2. As with assignment 2, there is a JSON schema file (`assignment3-input-schema.json`) that can help you with editing. 
+
+Here are the contents of the input file for assignment 3:
+## Options
+The `options` object for this assignment is the same as for the previous one; it contains a `table_size` element that determines the size of the process table. The only consideration here is that you should make sure the `table_size` is large enough to hold all of the processes in the next section.
+## Processes
+Instead of an `actions` section, this version contains a `processes` section, which enumerates all of the processes that will be run using your scheduler. For this assignment, each `process` within the `processes` section contains `priority` and `cpu_needed` values, in addition to the `process_name`.
+## Schedule
+Finally, the input file contains a `schedule` section, which gives the details of what scheduling parameters should be used for a particular run.
+
+The `schedule` object contains the following entries:
+* `scheduling_algorithm` - determins which algorithm should be used. Valid ales are `fcfs` or  `priority_round_robin`
+* `scheduling_quantum` - the number of CPU cycles that a process can run at each scheduling iteration. This defaults to 1.
+
+# execute
+
+The `execute` main program (either `execute.cpp` or `execute.py`) is the main program that you will use to exercise your scheduling algorithms.
+
+Your program will:
+* Read the table_size from the input and initialze the ProcessTable object
+* Read the scheduling options from the input and initialize the scheduling object
+* Read the list of proceses from the input and add them to the process table and the scheduler
+* Simulate the execution of the processes until all processes are complete.
+
+Follow the comments in `execute.cpp` or `execute.py` to implement and test this program. 
 
 
 
