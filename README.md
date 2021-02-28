@@ -105,5 +105,5 @@ Follow the comments in `execute.cpp` or `execute.py` to implement and test this 
 
 # Submission
 
-When you have completed your assignment, update the `submit.txt` file found in your starter files and upload it to Blackboard.
+When you have completed your assignment, commit your work to git, push to github, update the `submit.txt` file, and upload it to Blackboard.
 
