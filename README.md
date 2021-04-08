@@ -1,4 +1,4 @@
-# CISC 5595 Assignment 3: Process Scheduling
+# Operating Systems Assignment 3: Process Scheduling
 
 In this assignment, we will enhance our Process class so that we can simulate a "running" process. We will then implement two different CPU scheduling algorithms using this capability, and update our test program to execute the algorithms.
 
