@@ -37,7 +37,6 @@ class Process {
 
         // TODO:
         // Add a declaration for a getter for the cpu_used attribute
-        const int cpuUsed() const;
 
 
         // run
